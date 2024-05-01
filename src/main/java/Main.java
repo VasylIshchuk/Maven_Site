@@ -1,9 +1,27 @@
 import database.DatabaseConnection;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+
+
 public class Main {
     public static void main(String[] args) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        databaseConnection.connect();
+        databaseConnection.connect("jdbc:sqlite:auth_account.sqlite");
+        String sql = "INSERT INTO auth_account(name, password) VALUES('Benedict','1212')";
+        try(Statement statement = databaseConnection.getConnection().createStatement()) {
+            statement.executeUpdate(sql);
+            ResultSet rs = statement.executeQuery("SELECT * FROM auth_account");
+            while (rs.next()) {
+                System.out.print("name = " + rs.getString("name"));
+                System.out.println(" password = " + rs.getInt("password"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
 /*
