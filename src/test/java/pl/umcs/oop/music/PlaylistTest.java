@@ -22,7 +22,7 @@ class PlaylistTest {
         Playlist playlist = new Playlist();
         Song song = new Song("Pink Floyd","Wish You Were Here",334);
         playlist.add(song);
-        assertEquals(playlist.get(1),song);
+        assertEquals(playlist.get(0),song);
     }
     @Test
     public void testAtSeconds(){
