@@ -10,9 +10,9 @@ public class DatabaseConnection {
     public Connection getConnection() {
         return connection;
     }
-    public void connect(){
+    public void connect(String path){
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:auth_account.sqlite");
+            connection = DriverManager.getConnection(path);
             System.out.println("Connection to database has been established :)");
         } catch (SQLException e) {
             e.printStackTrace();
