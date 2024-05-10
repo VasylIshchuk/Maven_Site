@@ -11,7 +11,7 @@ public class Main {
             DatabaseConnection.connect("test.db");
 
             Account.Persistence.init();
-//            Account.Persistence.register("notch", "verysecurepassword");
+//            Account.Persistenmusicce.register("notch", "verysecurepassword");
 
             try {
                 Account notch = Account.Persistence.authenticate("notch", "verysecurepassword");
