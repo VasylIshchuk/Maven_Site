@@ -36,7 +36,7 @@ public class Account {
     public static class Persistence {
         public static void init() {
             try {
-                String createSQLTable = "CREATE TABLE IF NOT EXISTS account( " +
+                String createSQLTable = "CREATE TABLE IF NOT EXISTS accounts( " +
                         "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                         "username TEXT NOT NULL," +
                         "password TEXT NOT NULL)";
@@ -50,7 +50,7 @@ public class Account {
         public static int register(String username, String password) {
             String hashedPassword =  BCrypt.withDefaults().hashToString(12, password.toCharArray());
             try {
-                String insertSQL = "INSERT INTO account(username, password) VALUES (?, ?)";
+                String insertSQL = "INSERT INTO accounts(username, password) VALUES (?, ?)";
                 PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(insertSQL);
 
                 statement.setString(1, username);
@@ -68,7 +68,7 @@ public class Account {
 
         public static Account authenticate(String username, String password) throws AuthenticationException {
             try {
-                String sql = "SELECT id, username, password FROM account WHERE username = ?";
+                String sql = "SELECT id, username, password FROM accounts WHERE username = ?";
 
                 PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql);
                 statement.setString(1, username);
